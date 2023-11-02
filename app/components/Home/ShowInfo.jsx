@@ -45,11 +45,7 @@ const ShowInfo = ({info})=> {
             <div className="generos flex flex-row flex-wrap px-2 mt-5">
                 {
                     info.genres.map((genero,index)=> {
-                        const color = genres.find((gen)=> {
-                            return gen.gen === genero
-                        })
-                        const folorF = color.color
-                        return <p key={index} style={styleP} className={`p-2 rounded-[20px]`}>{genero}</p>
+                        return <p key={index} style={styleP} className={`p-2 mx-1 rounded-[20px]`}>{genero}</p>
                     })
                 }
             </div>
