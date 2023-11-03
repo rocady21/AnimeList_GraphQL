@@ -27,7 +27,7 @@ const VerAnime = () => {
                 <Portada banner={dataF.bannerImage} data={dataF}/>
             </div>
             <div className="body flex flex-row w-full mt-[310px] px-[10%] 2xl:px-[15%] xl:px-[15%] lg:px-[13%] md:px-[15%] sm:px-[20%]">
-                <InfoAnime/>
+                <InfoAnime info = {dataF}/>
                 <Characters/>
             </div>
             
