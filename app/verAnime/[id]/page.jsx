@@ -4,6 +4,7 @@ import CardInfo from "@/app/components/VIewAnimee/CardInfo";
 import Characters from "@/app/components/VIewAnimee/Characters";
 import InfoAnime from "@/app/components/VIewAnimee/InfoAnime";
 import Portada from "@/app/components/VIewAnimee/Portada";
+import Relations from "@/app/components/VIewAnimee/Relations";
 import { useQuery } from "@apollo/client";
 import { useRouter,useParams } from "next/navigation";
 import React from "react";
@@ -28,7 +29,10 @@ const VerAnime = () => {
             </div>
             <div className="body flex flex-row w-full mt-[310px] px-[10%] 2xl:px-[15%] xl:px-[15%] lg:px-[13%] md:px-[15%] sm:px-[20%]">
                 <InfoAnime info = {dataF}/>
-                <Characters/>
+                <div className="flex flex-col w-full h-full">
+                    <Relations relations = {dataF.relations.edges}/>
+                    <Characters/>
+                </div>
             </div>
             
         </div>

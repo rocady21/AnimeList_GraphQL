@@ -6,3 +6,30 @@ body {
     background:rgb(238, 238, 238) ;
 
 }
+
+
+.scrollable-container {
+    overflow-x: auto;
+    scroll-margin: 20px;
+  }
+::-webkit-scrollbar {
+    width: 10px;
+    height: 6px;
+    
+  }
+    ::-webkit-scrollbar-thumb {
+    background-color: #a0a0a0;
+    border-radius: 6px;
+  }
+    ::-webkit-scrollbar-track {
+    background-color: #f7f7f7;
+  }
+     * {
+    scrollbar-width: thin;
+    scrollbar-color: #bebebe #f1f1f1;
+  }
+    *::-webkit-scrollbar-track {
+    background-color: #f4f4f4;
+  }
+  
+

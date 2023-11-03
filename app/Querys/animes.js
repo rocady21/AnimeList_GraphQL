@@ -175,8 +175,11 @@ const OBTENER_ANIME_ESPESIFICO = (id)=> {
                     userPreferred
                   }
                   coverImage{
-                    medium
+                    large,
+                    color
                   }
+                  type
+                  status
                 }
               }
             }
