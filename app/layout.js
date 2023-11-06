@@ -1,9 +1,10 @@
 "use client"
 import { Inter } from 'next/font/google'
 import './globals.css'
-import NavBar from './components/NavBar'
+
 import { ApolloProvider } from '@apollo/client'
 import client from '@/config/apollo'
+import NavBar from './components/NavBar'
 
 
 const inter = Inter({ subsets: ['latin'] })

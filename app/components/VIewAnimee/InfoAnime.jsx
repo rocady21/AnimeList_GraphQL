@@ -7,7 +7,7 @@ const InfoAnime = ({info})=> {
     const {startDate,endDate,format,popularity,duration,episodes,type,countryOfOrigin,source,studios,seasson,status} = info
 
     return (
-        <div className="bg-white w-[250px] h-[1000px] bg-gray-100 p-[25px] flex flex-col items-start shadow-lg">
+        <div className="bg-white 1/5 h-[1000px] bg-gray-100 p-[25px] flex flex-col items-start shadow-lg shadow-md">
 
             <div className="my-3"><span className="font-medium">Estado:</span>
                 <p className="text-light text-sm">{status}</p>

@@ -16,6 +16,8 @@ const VerAnime = () => {
     const QUERYANIME = OBTENER_ANIME_ESPESIFICO(id)
     const {data,loading,error} = useQuery(QUERYANIME)
     
+    console.log("A");
+    console.log(data);
     if(loading === true) {
         return "Cargando..."
     }
@@ -29,9 +31,9 @@ const VerAnime = () => {
             </div>
             <div className="body flex flex-row w-full mt-[310px] px-[10%] 2xl:px-[15%] xl:px-[15%] lg:px-[13%] md:px-[15%] sm:px-[20%]">
                 <InfoAnime info = {dataF}/>
-                <div className="flex flex-col w-full h-full">
+                <div className="flex flex-col w-4/5 h-full">
                     <Relations relations = {dataF.relations.edges}/>
-                    <Characters/>
+                    <Characters characters={dataF.characters.edges}/>
                 </div>
             </div>
             
