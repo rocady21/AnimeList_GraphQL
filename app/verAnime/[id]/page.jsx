@@ -14,7 +14,11 @@ const VerAnime = () => {
 
     const {id} = useParams()
     const QUERYANIME = OBTENER_ANIME_ESPESIFICO(id)
-    const {data,loading,error} = useQuery(QUERYANIME)
+    const {data,loading,error} = useQuery(QUERYANIME,{
+        variables:{
+            id:id
+        }
+    })
     
     console.log("A");
     console.log(data);

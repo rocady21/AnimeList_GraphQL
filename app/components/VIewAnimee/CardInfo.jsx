@@ -2,10 +2,9 @@ import React from "react";
 
 
 const CardInfo = ({data})=> {
-    console.log(data);
-    console.log("A");
+
     return (
-        <div className="flex flex-row  left-[10%] absolute 2xl:left-[15%] xl:left-[15%] lg:left-[13%] md:left-[15%] sm:left-[20%] top-[65%]">
+        <div className="flex flex-row  left-[10%] absolute 2xl:left-[15%] xl:left-[15%] lg:left-[13%] md:left-[15%] sm:left-[20%] top-[75%]">
             <div className="padreCard flex flex-col">
                 <img className="bg-white shadow-lg md:w-[200px] md:h-[300px] w-[125px] h-[175px] w-full h-[80%] rounded" src={data.coverImage.extraLarge} alt="" />
                 <div className="buttons w-full py-4 flex flex-row justify-between">
