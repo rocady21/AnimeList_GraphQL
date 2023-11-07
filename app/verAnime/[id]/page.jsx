@@ -25,7 +25,6 @@ const VerAnime = () => {
         return <Loading/>
     }
     const {Page:{media:[dataF]}} = data
-    console.log(dataF);
     
     return (
         <div className="w-full h-full flex flex-col">

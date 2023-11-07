@@ -8,7 +8,6 @@ const CardRelations = ({anime})=> {
     const irAlAnime = ()=> {
         router.push("/verAnime/" + anime.id)
     }
-    console.log(anime);
     return (
         <div role="button" onClick={irAlAnime} className="w-[350px] h-[200px] min-w-[300px]  mx-2 p-4 flex flex-row bg-gray-100" >
             <div className="flex flex-col justify-between">

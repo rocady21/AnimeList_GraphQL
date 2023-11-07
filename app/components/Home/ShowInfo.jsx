@@ -3,7 +3,6 @@ import React from "react";
 
 
 const ShowInfo = ({info})=> {
-    console.log(info);
     const triangulo = {
         position: "absolute",
         left: "-10px",
@@ -34,8 +33,7 @@ const ShowInfo = ({info})=> {
             
                 info.studios.edges.map((studio,index)=> {
                     const final = info.studios.edges.length -1
-                    console.log(final);
-                    console.log(index);
+
                     return <div className="text-light">{studio.node.name}{index === final? "" : <span className="mx-2 font-bold">-</span> }</div>
                 })
             }
