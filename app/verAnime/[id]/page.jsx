@@ -20,8 +20,6 @@ const VerAnime = () => {
         }
     })
     
-    console.log("A");
-    console.log(data);
     if(loading === true) {
         return "Cargando..."
     }
@@ -31,7 +29,7 @@ const VerAnime = () => {
     return (
         <div className="w-full h-full flex flex-col">
             <div className="portada w-full h-full">
-                <Portada banner={dataF.bannerImage} data={dataF}/>
+                <Portada data={dataF}/>
             </div>
             <div className="body flex flex-row w-full mt-[310px] px-[10%] 2xl:px-[15%] xl:px-[15%] lg:px-[13%] md:px-[15%] sm:px-[20%]">
                 <InfoAnime info = {dataF}/>
