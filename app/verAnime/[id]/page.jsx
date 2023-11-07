@@ -8,6 +8,7 @@ import Relations from "@/app/components/VIewAnimee/Relations";
 import { useQuery } from "@apollo/client";
 import { useRouter,useParams } from "next/navigation";
 import React from "react";
+import Loading from "./loading";
 
 
 const VerAnime = () => {
@@ -21,7 +22,7 @@ const VerAnime = () => {
     })
     
     if(loading === true) {
-        return "Cargando..."
+        return <Loading/>
     }
     const {Page:{media:[dataF]}} = data
     console.log(dataF);

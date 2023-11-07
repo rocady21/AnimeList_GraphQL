@@ -33,7 +33,7 @@ const ModalCharacter = ({ open, handleClose, info }) => {
                 aria-describedby="child-modal-description"
             >
 
-                <Box sx={{ ...styleModal, width: 900 }}>
+                <Box sx={{ ...styleModal, width: 900,border:"none" }}>
                     <div className="flex flex-row">
                         <img className=" object-center object-contain" src={image.large} alt="" />
                         <div className="info px-4 w-2/3">
