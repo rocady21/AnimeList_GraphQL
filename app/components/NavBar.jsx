@@ -7,12 +7,10 @@ const NavBar = ()=> {
         <div className="flex flex-row bg-black/90 p-4 px-[200px] justify-around font-light text-white">
 
         <div className="nombrePAges flex flex-row items-center w-2/5 ">
-            <h1 className="text-[20px] uppercase font-bold">AnimePage</h1>
+            <Link href={"/"} className="text-[20px] uppercase font-bold">AnimePage</Link>
             <div className="links w-full flex justify-around">
-                <Link href={"/"}>Animes</Link>
+                <Link href={"/animes"}>Animes</Link>
                 <Link href={"/mangas"}>Mangas</Link>
-
-
             </div>
         </div>
 

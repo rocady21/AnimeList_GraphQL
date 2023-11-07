@@ -31,9 +31,9 @@ const VerAnime = () => {
             <div className="portada w-full h-full">
                 <Portada data={dataF}/>
             </div>
-            <div className="body flex flex-row w-full mt-[310px] px-[10%] 2xl:px-[15%] xl:px-[15%] lg:px-[13%] md:px-[15%] sm:px-[20%]">
+            <div className="flex flex-col items-center md:items-start md:flex-row  w-full mt-[310px] px-[0px] sm:px-[50px] md:px-[100px] lg:px-[159px] xl:px-[250px]">
                 <InfoAnime info = {dataF}/>
-                <div className="flex flex-col w-4/5 h-full">
+                <div className="flex flex-col h-full md:w-4/5 w-full">
                     <Relations relations = {dataF.relations.edges}/>
                     <Characters characters={dataF.characters.edges}/>
                 </div>

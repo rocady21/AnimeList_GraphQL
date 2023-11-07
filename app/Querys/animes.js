@@ -219,9 +219,99 @@ const OBTENER_ANIME_ESPESIFICO = (id)=> {
       
 } 
 
+const TOP3POPULARITYANIME = gql`query GetAnimeList($page:Int){
+  Page(page: $page perPage:3){
+    media(sort:POPULARITY_DESC,season:FALL){
+      id
+      idMal
+      title {
+        romaji
+        english
+        native
+        userPreferred
+      }
+      type
+      season
+      coverImage {
+        extraLarge
+        large
+        medium
+        color
+      }
+      bannerImage
+    
+    }                  
+  }
+}
+`
+
+const TRAER_ANIMES_TENDENCIA = gql`
+query GetAnimeList($page:Int ){
+  Page(page: $page perPage:4){
+      media(sort:TRENDING_DESC){
+      id
+      idMal
+      title {
+        romaji
+        english
+        native
+        userPreferred
+      }
+      type
+      season
+      coverImage {
+        extraLarge
+        large
+        medium
+        color
+      }
+      bannerImage
+    
+    }          
+  }
+}
+
+
+
+
+
+
+`
+
+const POPULAR_ESTA_TEMPORADA = gql`
+query GetAnimeList($page:Int ){
+  Page(page: $page perPage:4){
+      media(sort:POPULARITY_DESC,season:FALL){
+      id
+      idMal
+      title {
+        romaji
+        english
+        native
+        userPreferred
+      }
+      type
+      season
+      coverImage {
+        extraLarge
+        large
+        medium
+        color
+      }
+      bannerImage
+    
+    }          
+  }
+}
+
+
+`
 
 
 export {
     OBTENER_ANIMES,
-    OBTENER_ANIME_ESPESIFICO
+    OBTENER_ANIME_ESPESIFICO,
+    TRAER_ANIMES_TENDENCIA,
+    TOP3POPULARITYANIME,
+    POPULAR_ESTA_TEMPORADA
 }
