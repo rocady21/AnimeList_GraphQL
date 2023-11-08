@@ -247,7 +247,7 @@ const TOP3POPULARITYANIME = gql`query GetAnimeList($page:Int){
 
 const TRAER_ANIMES_TENDENCIA = gql`
 query GetAnimeList($page:Int ){
-  Page(page: $page perPage:4){
+  Page(page: $page perPage:6){
       media(sort:TRENDING_DESC){
       id
       idMal
@@ -270,6 +270,7 @@ query GetAnimeList($page:Int ){
     }          
   }
 }
+
 
 
 

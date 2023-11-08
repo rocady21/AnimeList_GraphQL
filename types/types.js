@@ -1,0 +1,1 @@
+export const CAMBIAR_MENSAJE = "CAMBiAR_MENSAJE"
