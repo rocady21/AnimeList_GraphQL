@@ -2,7 +2,7 @@ const { gql } = require("@apollo/client");
 
 const OBTENER_ANIMES = gql`
 query GetAnimeList($page: Int) {
-    Page(page: $page, perPage: 32) {
+    Page(page: $page, perPage: 40) {
       media {
         id
         idMal
@@ -36,6 +36,7 @@ query GetAnimeList($page: Int) {
         countryOfOrigin
         isLicensed
         source
+        volumes
         hashtag
         trailer {
           id
@@ -156,6 +157,7 @@ const OBTENER_ANIME_ESPESIFICO = (id)=> {
           isLicensed
           source
           hashtag
+          volumes
           trailer {
             id
           }
@@ -239,6 +241,18 @@ const TOP3POPULARITYANIME = gql`query GetAnimeList($page:Int){
         color
       }
       bannerImage
+      format
+      episodes
+
+      studios {
+        edges {
+          node {
+            id
+          name}
+        }
+      }
+      genres
+      volumes
     
     }                  
   }
@@ -266,6 +280,18 @@ query GetAnimeList($page:Int ){
         color
       }
       bannerImage
+      format
+      episodes
+
+      studios {
+        edges {
+          node {
+            id
+          name}
+        }
+      }
+      genres
+      volumes
     
     }          
   }
@@ -281,7 +307,7 @@ query GetAnimeList($page:Int ){
 
 const POPULAR_ESTA_TEMPORADA = gql`
 query GetAnimeList($page:Int ){
-  Page(page: $page perPage:4){
+  Page(page: $page perPage:6){
       media(sort:POPULARITY_DESC,season:FALL){
       id
       idMal
@@ -300,7 +326,56 @@ query GetAnimeList($page:Int ){
         color
       }
       bannerImage
+      format
+      episodes
+
+      studios {
+        edges {
+          node {
+            id
+          name}
+        }
+      }
+      genres
+      volumes
     
+    }          
+  }
+}
+`
+const POPULAR_TOOD_EL_TIEMPO = gql`
+query GetAnimeList($page:Int ){
+  Page(page: $page perPage:6){
+      media(sort:POPULARITY_DESC){
+      id
+      idMal
+      title {
+        romaji
+        english
+        native
+        userPreferred
+      }
+      type
+      season
+      coverImage {
+        extraLarge
+        large
+        medium
+        color
+      }
+      bannerImage
+      format
+      episodes
+
+      studios {
+        edges {
+          node {
+            id
+          name}
+        }
+      }
+      genres
+      volumes
     }          
   }
 }
@@ -314,5 +389,6 @@ export {
     OBTENER_ANIME_ESPESIFICO,
     TRAER_ANIMES_TENDENCIA,
     TOP3POPULARITYANIME,
-    POPULAR_ESTA_TEMPORADA
+    POPULAR_ESTA_TEMPORADA,
+    POPULAR_TOOD_EL_TIEMPO
 }

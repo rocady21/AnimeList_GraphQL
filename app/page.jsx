@@ -3,7 +3,8 @@
 import React, { useContext, useEffect, useState } from "react"
 import AnimeContext from "./context/animes/AnimesContext"
 import { useQuery } from "@apollo/client"
-import { TOP3POPULARITYANIME, TRAER_ANIMES_TENDENCIA } from "./Querys/animes"
+import { POPULAR_ESTA_TEMPORADA, TOP3POPULARITYANIME, TRAER_ANIMES_TENDENCIA,POPULAR_TOOD_EL_TIEMPO } from "./Querys/animes"
+
 import "react-responsive-carousel/lib/styles/carousel.min.css"
 import { Carousel } from 'react-responsive-carousel';
 import { useRouter } from "next/navigation"
@@ -17,43 +18,64 @@ export default function Home() {
 
   const {data,loading,error} = useQuery(TOP3POPULARITYANIME)
   const {data:dataTendencia,loading:loadingTendencia,error:errorTendencia} = useQuery(TRAER_ANIMES_TENDENCIA)
+  const {data:dataPopular,loading:loadingPopular,error:errorPopular} = useQuery(POPULAR_ESTA_TEMPORADA)
+  const {data:dataPopularAll,loading:loadingPopularAll,error:errorPopularAll} = useQuery(POPULAR_TOOD_EL_TIEMPO)
 
-  if(loading === true || loadingTendencia === true) return "Cargando..."
+
+  if(loading === true || loadingTendencia === true || loadingPopular) return "Cargando..."
   console.log(dataTendencia);
   const verAnime = ()=> {
     router.push("verAnime/" + id)
   }
   return (
-    <div className="flex flex-col items-center w-[75%] m-auto">
+    <div className="flex flex-col items-center w-[60%] m-auto">
       <div className="w-full">
 
       </div>
 
-      <div className="tendencia my-[50px] w-full">
+      <div className="tendencia mt-[50px] w-full">
         <div className=" flex flex-row justify-between items-start">
           <h1 className="font-bold text-gray-800 uppercase text-start">Tendecias</h1>
-          <p className="uppercase text-[12px]">Ver Todos</p>
+          <p role="button" className="uppercase text-[12px]">Ver Todos</p>
         </div>
         <div className="data flex flex-row ">
           {
-            dataTendencia.Page.media.map((anime)=> {
-              return <SimpleCard img={anime.coverImage.large} name={anime.title.native}/>
+            dataTendencia.Page.media.map((anime,index)=> {              
+              return <SimpleCard key={index} keyA={"Tendencia"} index = {index} data={anime}/>
             })
           }
         </div>
       </div>
 
-      <div className="tendencia my-[50px] w-full">
-        <h1 className="font-bold text-gray-800 uppercase text-start ">Popular en esta temporada</h1>
-        <div className="data"></div>
+      <div className="tendencia mt-[15px] w-full">
+        <div className=" flex flex-row justify-between items-start">
+          <h1 className="font-bold text-gray-800 uppercase text-start">Popular en esta temporada</h1>
+          <p  role="button" className="uppercase text-[12px]">Ver Todos</p>
+        </div>
+        <div className="data flex flex-row ">
+          {
+            dataPopular.Page.media.map((anime,index)=> {
+              return <SimpleCard key={index} index={index} keyA={"popularTemp"} data={anime}/>
+            })
+          }
+        </div>
       </div>
 
-      <div className="tendencia my-[50px] w-full">
-        <h1 className="font-bold text-gray-800 uppercase text-start ">Popular</h1>
-        <div className="data"></div>
+      <div className="tendencia mt-[15px] w-full">
+        <div className=" flex flex-row justify-between items-start">
+          <h1 className="font-bold text-gray-800 uppercase text-start">Populares</h1>
+          <p  role="button" className="uppercase text-[12px]">Ver Todos</p>
+        </div>
+        <div className="data flex flex-row ">
+          {
+            dataPopularAll.Page.media.map((anime,index)=> {
+              return <SimpleCard key={index} index={index} keyA={"Popular"} data={anime}/>
+            })
+          }
+        </div>
       </div>
 
-      <div className="tendencia my-[50px] w-full">
+      <div className="tendencia mt-[10px] w-full">
         <h1 className="font-bold text-gray-800 uppercase text-start ">siguiente temporada</h1>
         <div className="data"></div>
       </div>

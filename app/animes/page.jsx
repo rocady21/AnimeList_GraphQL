@@ -9,7 +9,7 @@ import { OBTENER_ANIMES } from "../Querys/animes"
 
 const Animes = ()=> {
 
-  const [animeForPage,setAnimeForPage] = useState(16)
+  const [animeForPage,setAnimeForPage] = useState(20)
   const [currentPage,setCurrentPage] = useState(1)
   const {data,error,loading} = useQuery(OBTENER_ANIMES)
   
@@ -26,7 +26,7 @@ const Animes = ()=> {
   return (
     <div className="flex flex-col items-center">
       <h1 className="uppercase font-bold text-center text-[25px] mt-[25px]">Anime List</h1>
-      <div className="flex flex-row justify-between flex-wrap mx-[150px]">
+      <div className="flex flex-row justify-between flex-wrap mx-[250px]">
           {
           data? data.Page.media.map((animeInfo)=> {
             return <CardAnimne info={animeInfo}/>
