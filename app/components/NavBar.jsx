@@ -1,8 +1,19 @@
 "use client"
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import {Search} from "@mui/icons-material"
+import AnimeContext from "../context/animes/AnimesContext";
 const NavBar = ()=> {
+    
+    const [value,setValue] = useState("")
+    const {animes,search,buscarAnime} = useContext(AnimeContext)
+    console.log(search);
+    useEffect(()=>{
+        if(value !== "") {
+            buscarAnime(value)
+        }
+    },[value])
+
     return (
         <div className="flex flex-row bg-black/90 p-4 px-[200px] justify-around font-light text-white">
 
@@ -17,7 +28,7 @@ const NavBar = ()=> {
 
         <div className="text-gray-100 font-light bg-black/30 px-2 py-2 rounded-full text-[16px] justify-self-end">
             <Search className="mx-3"/>
-            <input className="focus:border-none focus:outline-none bg-black/30 text-[16px]" placeholder="Buscar..." type="text" name="search" id="search" />
+            <input value={value} onChange={(e)=> setValue(e.target.value)} className="focus:border-none focus:outline-none bg-black/30 text-[16px]" placeholder="Buscar..." type="text" name="search" id="search" />
 
         </div>
         </div>

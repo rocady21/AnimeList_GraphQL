@@ -1,4 +1,4 @@
-import { CAMBIAR_MENSAJE } from "@/types/types"
+import { CAMBIAR_MENSAJE,ACTUALIZAR_BUSCADOR,ACTUALIZAR_ANIMES } from "@/types/types"
 CAMBIAR_MENSAJE
 
 export default (state,actions) => {
@@ -8,6 +8,18 @@ export default (state,actions) => {
             return {
                 mensaje: actions.payload
             }
+        case ACTUALIZAR_BUSCADOR:
+            return {
+                ...state,
+                search:actions.payload
+
+            }
+        case ACTUALIZAR_ANIMES:
+            return {
+                ...state,
+                animes:state.payload
+            }
+
         default:
             return state
     }

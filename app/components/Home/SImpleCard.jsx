@@ -7,7 +7,6 @@ const SimpleCard = ({data,index,keyA})=> {
 
     const [show,setShow] = useState(false)
     const PonerColor = ()=> {
-        console.log("A");
         let p = document.getElementById("texto" + index + keyA)
         p.style.color = data.coverImage.color !== null? data.coverImage.color : "black"
         setShow(true)

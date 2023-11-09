@@ -3,7 +3,6 @@ import React from "react";
 
 
 const ShowInfo = ({info})=> {
-    console.log(info);
     const triangulo = {
         position: "absolute",
         left: "-10px",
