@@ -7,12 +7,15 @@ import Portada from "@/app/components/VIewAnimee/Portada";
 import Relations from "@/app/components/VIewAnimee/Relations";
 import { useQuery } from "@apollo/client";
 import { useRouter,useParams } from "next/navigation";
-import React from "react";
+import React, { useState } from "react";
 import Loading from "./loading";
+import Trailer from "@/app/components/VIewAnimee/Trailer";
+import Personajes from "@/app/components/VIewAnimee/Episodios";
+import Episodios from "@/app/components/VIewAnimee/Episodios";
 
 
 const VerAnime = () => {
-
+    const [statePage,setStatePage] = useState("Trailer")
     const {id} = useParams()
     const QUERYANIME = OBTENER_ANIME_ESPESIFICO(id)
     const {data,loading,error} = useQuery(QUERYANIME,{
@@ -35,7 +38,16 @@ const VerAnime = () => {
                 <InfoAnime info = {dataF}/>
                 <div className="flex flex-col h-full md:w-4/5 w-full">
                     <Relations relations = {dataF.relations.edges}/>
-                    <Characters characters={dataF.characters.edges}/>
+                    <div className="navegar flex flex-row mx-2 justify-around mt-[25px]">
+                        <button onClick={()=> setStatePage("Trailer")} className={`rounded-t-lg w-[33%] bg-${statePage === "Trailer"? "white" : "none"}`}>Trailer</button>
+                        <button onClick={()=> setStatePage("Personajes")} className={`rounded-t-lg w-[33%] bg-${statePage === "Personajes"? "white" : "none"}`}>Personajes</button>
+                        <button onClick={()=> setStatePage("Episodios")} className={`rounded-t-lg w-[33%] bg-${statePage === "Episodios"? "white" : "none"}`}>Episodios</button>
+                    </div>
+                    <div className="hijos mx-2" >
+                    {
+                        statePage === "Trailer" ? <Trailer trailer={dataF.trailer}/> : statePage === "Personajes"? <Characters characters={dataF.characters.edges}/> : <Episodios data={dataF}/>
+                    }
+                    </div>
                 </div>
             </div>
             

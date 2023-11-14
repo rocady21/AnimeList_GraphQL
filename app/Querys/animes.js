@@ -2,7 +2,7 @@ const { gql } = require("@apollo/client");
 
 const OBTENER_ANIMES = gql`
 query GetAnimeList($page: Int) {
-    Page(page: $page, perPage: 40) {
+    Page(page: $page, perPage: 40,type:ANIME) {
       media {
         id
         idMal
@@ -40,6 +40,11 @@ query GetAnimeList($page: Int) {
         hashtag
         trailer {
           id
+        }
+        trailer{
+          id
+          site
+          thumbnail
         }
         updatedAt
         coverImage {
@@ -95,7 +100,7 @@ query GetAnimeList($page: Int) {
 const OBTENER_ANIME_ESPESIFICO = (id)=> {
     return gql`query GetAnimeList($page: Int, $id:Int){
       Page(page: $page) {
-          media(id:$id){
+          media(id:$id ){
           id
           idMal
           title {
@@ -103,6 +108,11 @@ const OBTENER_ANIME_ESPESIFICO = (id)=> {
             english
             native
             userPreferred
+          }
+          trailer{
+            id
+            site
+            thumbnail
           }
           characters{
             edges{
@@ -158,9 +168,6 @@ const OBTENER_ANIME_ESPESIFICO = (id)=> {
           source
           hashtag
           volumes
-          trailer {
-            id
-          }
           updatedAt
           coverImage {
             extraLarge
@@ -223,7 +230,7 @@ const OBTENER_ANIME_ESPESIFICO = (id)=> {
 
 const TOP3POPULARITYANIME = gql`query GetAnimeList($page:Int){
   Page(page: $page perPage:3){
-    media(sort:POPULARITY_DESC,season:FALL){
+    media(sort:POPULARITY_DESC,season:FALL type:ANIME){
       id
       idMal
       title {
@@ -262,7 +269,7 @@ const TOP3POPULARITYANIME = gql`query GetAnimeList($page:Int){
 const TRAER_ANIMES_TENDENCIA = gql`
 query GetAnimeList($page:Int ){
   Page(page: $page perPage:6){
-      media(sort:TRENDING_DESC){
+      media(sort:TRENDING_DESC type:ANIME){
       id
       idMal
       title {
@@ -308,7 +315,7 @@ query GetAnimeList($page:Int ){
 const POPULAR_ESTA_TEMPORADA = gql`
 query GetAnimeList($page:Int ){
   Page(page: $page perPage:6){
-      media(sort:POPULARITY_DESC,season:FALL){
+      media(sort:POPULARITY_DESC,season:FALL type:ANIME){
       id
       idMal
       title {
@@ -317,6 +324,7 @@ query GetAnimeList($page:Int ){
         native
         userPreferred
       }
+      
       type
       season
       coverImage {
@@ -346,7 +354,7 @@ query GetAnimeList($page:Int ){
 const POPULAR_TOOD_EL_TIEMPO = gql`
 query GetAnimeList($page:Int ){
   Page(page: $page perPage:6){
-      media(sort:POPULARITY_DESC){
+      media(sort:POPULARITY_DESC type:ANIME){
       id
       idMal
       title {

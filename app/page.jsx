@@ -22,11 +22,9 @@ export default function Home() {
   const {data:dataPopularAll,loading:loadingPopularAll,error:errorPopularAll} = useQuery(POPULAR_TOOD_EL_TIEMPO)
 
 
-  if(loading === true || loadingTendencia === true || loadingPopular) return "Cargando..."
+  if(loading === true || loadingTendencia === true || loadingPopular === true) return "Cargando..."
   console.log(dataTendencia);
-  const verAnime = ()=> {
-    router.push("verAnime/" + id)
-  }
+
   return (
     <div className="flex flex-col items-center w-[60%] m-auto">
       <div className="w-full">
