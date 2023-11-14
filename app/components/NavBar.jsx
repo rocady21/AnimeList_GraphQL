@@ -6,12 +6,12 @@ import AnimeContext from "../context/animes/AnimesContext";
 const NavBar = ()=> {
     
     const [value,setValue] = useState("")
-    const {animes,search,buscarAnime} = useContext(AnimeContext)
+    const {animes,search,GuardarBusqueda} = useContext(AnimeContext)
+
     console.log(search);
     useEffect(()=>{
-        if(value !== "") {
-            buscarAnime(value)
-        }
+        console.log("A");
+        GuardarBusqueda(value)
     },[value])
 
     return (

@@ -2,8 +2,105 @@ const { gql } = require("@apollo/client");
 
 const OBTENER_ANIMES = gql`
 query GetAnimeList($page: Int) {
-    Page(page: $page, perPage: 40,type:ANIME) {
-      media {
+    Page(page: $page, perPage: 40) {
+      media(type:ANIME) {
+        id
+        idMal
+        title {
+          romaji
+          english
+          native
+          userPreferred
+        }
+        type
+        format
+        status
+        description
+        startDate {
+          year
+          month
+          day
+        }
+        endDate {
+          year
+          month
+          day
+        }
+        season
+        seasonYear
+        seasonInt
+        episodes
+        duration
+        chapters
+        volumes
+        countryOfOrigin
+        isLicensed
+        source
+        volumes
+        hashtag
+        trailer {
+          id
+        }
+        trailer{
+          id
+          site
+          thumbnail
+        }
+        updatedAt
+        coverImage {
+          extraLarge
+          large
+          medium
+          color
+        }
+        bannerImage
+        genres
+        synonyms
+        averageScore
+        meanScore
+        popularity
+        isLocked
+        trending
+        favourites
+        studios {
+          edges {
+            node {
+              id
+            name}
+          }
+        }
+        
+        tags {
+          id
+          name,
+          category,
+          
+        }
+        bannerImage
+        
+        relations {
+          edges {
+            id
+            node {
+              id
+              title {
+                romaji
+                english
+                native
+                userPreferred
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`
+
+const OBTENER_MANGAS = gql`
+query GetAnimeList($page: Int) {
+    Page(page: $page, perPage: 40) {
+      media(type:ANIME) {
         id
         idMal
         title {
@@ -266,51 +363,47 @@ const TOP3POPULARITYANIME = gql`query GetAnimeList($page:Int){
 }
 `
 
-const TRAER_ANIMES_TENDENCIA = gql`
-query GetAnimeList($page:Int ){
-  Page(page: $page perPage:6){
-      media(sort:TRENDING_DESC type:ANIME){
-      id
-      idMal
-      title {
-        romaji
-        english
-        native
-        userPreferred
-      }
-      type
-      season
-      coverImage {
-        extraLarge
-        large
-        medium
-        color
-      }
-      bannerImage
-      format
-      episodes
-
-      studios {
-        edges {
-          node {
-            id
-          name}
+const  TRAER_ANIMES_TENDENCIA = (viewAll)=> {
+  return  gql`
+  query GetAnimeList($page:Int ){
+    Page(page: $page ${viewAll === false && ` perPage:6` }){
+        media(sort:TRENDING_DESC type:ANIME){
+        id
+        idMal
+        title {
+          romaji
+          english
+          native
+          userPreferred
         }
-      }
-      genres
-      volumes
-    
-    }          
+        type
+        season
+        coverImage {
+          extraLarge
+          large
+          medium
+          color
+        }
+        bannerImage
+        format
+        episodes
+  
+        studios {
+          edges {
+            node {
+              id
+            name}
+          }
+        }
+        genres
+        volumes
+      
+      }          
+    }
   }
 }
-
-
-
-
-
-
-
 `
+}
 
 const POPULAR_ESTA_TEMPORADA = gql`
 query GetAnimeList($page:Int ){
@@ -351,44 +444,143 @@ query GetAnimeList($page:Int ){
   }
 }
 `
-const POPULAR_TOOD_EL_TIEMPO = gql`
-query GetAnimeList($page:Int ){
-  Page(page: $page perPage:6){
-      media(sort:POPULARITY_DESC type:ANIME){
-      id
-      idMal
-      title {
-        romaji
-        english
-        native
-        userPreferred
-      }
-      type
-      season
-      coverImage {
-        extraLarge
-        large
-        medium
-        color
-      }
-      bannerImage
-      format
-      episodes
 
-      studios {
-        edges {
-          node {
-            id
-          name}
+const POPULAR_TOOD_EL_TIEMPO = (viewAll)=> {
+  return  gql`
+  query GetAnimeList($page:Int ){
+    Page(page: $page ${viewAll === false && ` perPage:6` }){
+        media(sort:POPULARITY_DESC type:ANIME){
+        id
+        idMal
+        title {
+          romaji
+          english
+          native
+          userPreferred
         }
-      }
-      genres
-      volumes
+        type
+        season
+        coverImage {
+          extraLarge
+          large
+          medium
+          color
+        }
+        bannerImage
+        format
+        episodes
+  
+        studios {
+          edges {
+            node {
+              id
+            name}
+          }
+        }
+        genres
+        volumes
+      }          
+    }
+  }
+  
+  
+  `
+}
+const BUSCAR_ANIME = gql`
+query GetAnimeList($page:Int $search: String ){
+  Page(page: $page){
+      media(search:$search,sort:POPULARITY_DESC){
+        id
+        idMal
+        title {
+          romaji
+          english
+          native
+          userPreferred
+        }
+        type
+        format
+        status
+        description
+        startDate {
+          year
+          month
+          day
+        }
+        endDate {
+          year
+          month
+          day
+        }
+        season
+        seasonYear
+        seasonInt
+        episodes
+        duration
+        chapters
+        volumes
+        countryOfOrigin
+        isLicensed
+        source
+        volumes
+        hashtag
+        trailer {
+          id
+        }
+        trailer{
+          id
+          site
+          thumbnail
+        }
+        updatedAt
+        coverImage {
+          extraLarge
+          large
+          medium
+          color
+        }
+        bannerImage
+        genres
+        synonyms
+        averageScore
+        meanScore
+        popularity
+        isLocked
+        trending
+        favourites
+        studios {
+          edges {
+            node {
+              id
+            name}
+          }
+        }
+        
+        tags {
+          id
+          name,
+          category,
+          
+        }
+        bannerImage
+        
+        relations {
+          edges {
+            id
+            node {
+              id
+              title {
+                romaji
+                english
+                native
+                userPreferred
+              }
+            }
+          }
+        }
     }          
   }
 }
-
-
 `
 
 
@@ -398,5 +590,7 @@ export {
     TRAER_ANIMES_TENDENCIA,
     TOP3POPULARITYANIME,
     POPULAR_ESTA_TEMPORADA,
-    POPULAR_TOOD_EL_TIEMPO
+    POPULAR_TOOD_EL_TIEMPO,
+    OBTENER_MANGAS,
+    BUSCAR_ANIME
 }

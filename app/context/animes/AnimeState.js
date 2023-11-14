@@ -2,6 +2,7 @@ import React,{useReducer} from "react"
 import AnimeContext from "./AnimesContext"
 import AnimesReducer from "./AnimesReducer"
 import { CAMBIAR_MENSAJE,ACTUALIZAR_BUSCADOR,ACTUALIZAR_ANIMES } from "@/types/types"
+import { useQuery } from "@apollo/client"
 
 const AnimeState = ({children})=> {
     // State de pedidos
@@ -9,25 +10,13 @@ const AnimeState = ({children})=> {
     const initialState = {
         mensaje:"",
         animes:null,
-        search:""
+        search:"",
+        resultsSearch:null
     }
     const [state, dispach] = useReducer(AnimesReducer,initialState)
 
-    const mostrarMensaje = (msg)=> {
-        dispach({
-            type:CAMBIAR_MENSAJE,
-            payload:msg
-        })
-    }
+    const GuardarBusqueda = (text)=> {
 
-    const CargarAnimesStore = (animes)=> {
-        dispach({
-            type:ACTUALIZAR_ANIMES,
-            payload:animes
-        })
-    }
-
-    const buscarAnime = (text)=> {
         dispach({
             type:ACTUALIZAR_BUSCADOR,
             payload:text
@@ -40,9 +29,7 @@ const AnimeState = ({children})=> {
                 mensaje: state.mensaje,
                 search:state.search,
                 animes:state.animes,
-                CargarAnimesStore,
-                mostrarMensaje,
-                buscarAnime
+                GuardarBusqueda
             }}
         >
             {children}

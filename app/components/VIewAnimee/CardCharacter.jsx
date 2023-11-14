@@ -19,7 +19,7 @@ const CharactersCard = ({info}) => {
 
     return (
         <div className="w-1/2 md:w-full lg:w-1/2  2xl:w-1/3 p-5 relative ">
-            <div role="button" onClick={handleOpen} className="bg-gray-100 h-full flex flex-row rouned shadow-md">
+            <div role="button" onClick={handleOpen} className="bg-gray-100 h-full flex flex-row rouned shadow-md hover:bg-gray-300 hover:-translate-y-6">
                 <img className="w-1/3 h-full object-cover" src={image.large} alt="" />
                 <div className="p-3 flex flex-col items-start justify-between text-[12px] w-full">
                     <div className="info w-full">
