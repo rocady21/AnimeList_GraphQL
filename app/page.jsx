@@ -16,10 +16,12 @@ export default function Home() {
 
   const {mostrarMensaje,mensaje} = useContext(AnimeContext)
   const QUERY_TENDENCIA = TRAER_ANIMES_TENDENCIA(false)
+  const POPULAR_TOOD_EL_TIEMPO_QUERY = POPULAR_TOOD_EL_TIEMPO(false)
+
   const {data,loading,error} = useQuery(TOP3POPULARITYANIME)
   const {data:dataTendencia,loading:loadingTendencia,error:errorTendencia} = useQuery(QUERY_TENDENCIA)
   const {data:dataPopular,loading:loadingPopular,error:errorPopular} = useQuery(POPULAR_ESTA_TEMPORADA)
-  const {data:dataPopularAll,loading:loadingPopularAll,error:errorPopularAll} = useQuery(POPULAR_TOOD_EL_TIEMPO)
+  const {data:dataPopularAll,loading:loadingPopularAll,error:errorPopularAll} = useQuery(POPULAR_TOOD_EL_TIEMPO_QUERY)
 
 
   if(loading === true || loadingTendencia === true || loadingPopular === true || loadingPopularAll === true) return "Cargando..."
@@ -28,12 +30,12 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center w-[60%] m-auto">
 
-      <div className="tendencia mt-[50px] w-full overflow-x-scroll w-full">
+      <div className="tendencia mt-[50px] w-full w-full">
         <div className=" flex flex-row justify-between items-start">
           <h1 className="font-bold text-gray-800 uppercase text-start">Tendecias</h1>
           <p role="button" className="uppercase text-[12px]">Ver Todos</p>
         </div>
-        <div className="data flex flex-row w-[100%] max-w-[100%]  overflow-x-auto ">
+        <div className="data flex flex-row w-[100%] max-w-[100%]  ">
           {
             dataTendencia.Page.media.map((anime,index)=> {              
               return <SimpleCard key={index} keyA={"Tendencia"} index = {index} info={anime}/>

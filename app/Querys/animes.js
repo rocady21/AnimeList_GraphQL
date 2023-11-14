@@ -2,7 +2,7 @@ const { gql } = require("@apollo/client");
 
 const OBTENER_ANIMES = gql`
 query GetAnimeList($page: Int) {
-    Page(page: $page, perPage: 40) {
+    Page(page: $page, perPage: 72) {
       media(type:ANIME) {
         id
         idMal
@@ -363,45 +363,48 @@ const TOP3POPULARITYANIME = gql`query GetAnimeList($page:Int){
 }
 `
 
-const  TRAER_ANIMES_TENDENCIA = (viewAll)=> {
-  return  gql`
-  query GetAnimeList($page:Int ){
-    Page(page: $page ${viewAll === false && ` perPage:6` }){
-        media(sort:TRENDING_DESC type:ANIME){
-        id
-        idMal
-        title {
-          romaji
-          english
-          native
-          userPreferred
-        }
-        type
-        season
-        coverImage {
-          extraLarge
-          large
-          medium
-          color
-        }
-        bannerImage
-        format
-        episodes
-  
-        studios {
-          edges {
-            node {
-              id
-            name}
-          }
-        }
-        genres
-        volumes
+
+
+const TRAER_ANIMES_TENDENCIA = (viewAll)=> {
+  return gql`
+      query GetAnimeList($page:Int ){
+        Page(page: $page perPage:6){
+            media(sort:TRENDING_DESC type:ANIME){
+            id
+            idMal
+            title {
+              romaji
+              english
+              native
+              userPreferred
+            }
+            type
+            season
+            coverImage {
+              extraLarge
+              large
+              medium
+              color
+            }
+            bannerImage
+            format
+            episodes
       
-      }          
-    }
-  }
-}
+            studios {
+              edges {
+                node {
+                  id
+                name}
+              }
+            }
+            genres
+            volumes
+          
+          }          
+        }
+      }
+    
+    
 `
 }
 

@@ -10,7 +10,7 @@ const ViewAllPopular = ()=> {
         return "Cargando..."
     }
     return ( 
-        <div></div>
+        <div ></div>
     )
 }
 

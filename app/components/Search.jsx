@@ -16,10 +16,12 @@ const Search = ()=> {
     if(loading === true) return "cargando..."
     console.log(data);
     return (
-        <div className="flex flex-row">
+        <div className="flex flex-row flex-wrap w-full px-[150px]">
             {
                 data.Page.media.map((anime,index)=> {
-                    <SimpleCard info={anime} keyA={"Search"} index={index}/>
+                    return <div className="w-[12%] h-[350px] mx-3">
+                        <SimpleCard key={index} info={anime} keyA={"Search"} index={index}/>
+                    </div>
                 })
             }
         </div>

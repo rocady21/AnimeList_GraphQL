@@ -24,8 +24,8 @@ const SimpleCard = ({info:data,index,keyA,})=> {
     }
     
     return (
-        <div role="button" onClick={VerAnime} onMouseEnter={PonerColor} onMouseLeave={QuitarColor} className="m-2 w-full flex flex-col relative ">
-            <img className="w-full h-[250px] shadow " src={data.coverImage.large} alt="" />
+        <div role="button" onClick={VerAnime} onMouseEnter={PonerColor} onMouseLeave={QuitarColor} className="m-2 h-full w-full flex flex-col relative ">
+            <img className="w-full  h-[250px] shadow " src={data.coverImage.large} alt="" />
             <p id={"texto" + index + keyA} style={{color:"gray"}} className={`font-bold text-[12px] mt-1 `}>{data.title.userPreferred}</p>
             {
                 show === true && <ShowInfo info={data} />
