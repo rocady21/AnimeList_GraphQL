@@ -2,7 +2,7 @@ const { gql } = require("@apollo/client");
 
 const OBTENER_ANIMES = gql`
 query GetAnimeList($page: Int) {
-    Page(page: $page, perPage: 72) {
+    Page(page: $page, perPage:48) {
       media(type:ANIME) {
         id
         idMal
@@ -368,7 +368,7 @@ const TOP3POPULARITYANIME = gql`query GetAnimeList($page:Int){
 const TRAER_ANIMES_TENDENCIA = (viewAll)=> {
   return gql`
       query GetAnimeList($page:Int ){
-        Page(page: $page perPage:6){
+        Page(page: $page ${ viewAll === true? null: `perPage:6` }){
             media(sort:TRENDING_DESC type:ANIME){
             id
             idMal
@@ -450,8 +450,8 @@ query GetAnimeList($page:Int ){
 
 const POPULAR_TOOD_EL_TIEMPO = (viewAll)=> {
   return  gql`
-  query GetAnimeList($page:Int ){
-    Page(page: $page ${viewAll === false && ` perPage:6` }){
+  query GetAnimeList($page:Int){
+    Page(page: $page ${viewAll === true? null : ` perPage:6`} ){
         media(sort:POPULARITY_DESC type:ANIME){
         id
         idMal
@@ -484,8 +484,7 @@ const POPULAR_TOOD_EL_TIEMPO = (viewAll)=> {
         volumes
       }          
     }
-  }
-  
+}
   
   `
 }

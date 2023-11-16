@@ -20,6 +20,7 @@ const Animes = ()=> {
   
   if(loading === true) return <Loading/>
   const totalAnimes = data.Page.media.length
+  console.log(totalAnimes);
   const lastIndex = currentPage * animeForPage
   const firstIndex = lastIndex - animeForPage
   // aqui actualizaremos el store con los animes que cargamos

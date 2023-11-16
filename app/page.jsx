@@ -9,6 +9,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"
 import { Carousel } from 'react-responsive-carousel';
 import { useRouter } from "next/navigation"
 import SimpleCard from "./components/Home/SImpleCard"
+import MainPageLoading from "./components/MainPageLoading"
 
 export default function Home() {
 
@@ -24,8 +25,15 @@ export default function Home() {
   const {data:dataPopularAll,loading:loadingPopularAll,error:errorPopularAll} = useQuery(POPULAR_TOOD_EL_TIEMPO_QUERY)
 
 
-  if(loading === true || loadingTendencia === true || loadingPopular === true || loadingPopularAll === true) return "Cargando..."
-  console.log(dataTendencia);
+  if(loading === true || loadingTendencia === true || loadingPopular === true || loadingPopularAll === true) return <MainPageLoading/>
+
+
+  const VerTendencias = ()=> {
+    router.push("/ViewAllTendencias")
+  }
+  const VerPopularesAll = ()=> {
+    router.push("/ViewAllPopular")
+  }
 
   return (
     <div className="flex flex-col items-center w-[60%] m-auto">
@@ -33,7 +41,7 @@ export default function Home() {
       <div className="tendencia mt-[50px] w-full w-full">
         <div className=" flex flex-row justify-between items-start">
           <h1 className="font-bold text-gray-800 uppercase text-start">Tendecias</h1>
-          <p role="button" className="uppercase text-[12px]">Ver Todos</p>
+          <p role="button" onClick={VerTendencias} className="uppercase text-[12px]">Ver Todos</p>
         </div>
         <div className="data flex flex-row w-[100%] max-w-[100%]  ">
           {
@@ -61,7 +69,7 @@ export default function Home() {
       <div className="tendencia mt-[15px] w-full">
         <div className=" flex flex-row justify-between items-start">
           <h1 className="font-bold text-gray-800 uppercase text-start">Populares</h1>
-          <p  role="button" className="uppercase text-[12px]">Ver Todos</p>
+          <p onClick={VerPopularesAll}  role="button" className="uppercase text-[12px]">Ver Todos</p>
         </div>
         <div className="data flex flex-row ">
           {
