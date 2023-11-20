@@ -3,7 +3,7 @@ const { gql } = require("@apollo/client");
 const OBTENER_ANIMES = gql`
 query GetAnimeList($page: Int) {
     Page(page: $page, perPage:48) {
-      media(type:ANIME) {
+      media(type:ANIME sort:POPULARITY_DESC) {
         id
         idMal
         title {
@@ -99,8 +99,8 @@ query GetAnimeList($page: Int) {
 
 const OBTENER_MANGAS = gql`
 query GetAnimeList($page: Int) {
-    Page(page: $page, perPage: 40) {
-      media(type:ANIME) {
+    Page(page: $page, perPage: 48) {
+      media(type:MANGA sort:POPULARITY_DESC) {
         id
         idMal
         title {

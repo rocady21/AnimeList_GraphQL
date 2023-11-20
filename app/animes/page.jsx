@@ -9,6 +9,7 @@ import { OBTENER_ANIMES } from "../Querys/animes"
 import AnimeContext from "../context/animes/AnimesContext"
 import SimpleCard from "../components/Home/SImpleCard"
 import Search from "../components/Search"
+import MainPageLoading from "../components/MainPageLoading"
 
 const Animes = ()=> {
 
@@ -18,7 +19,7 @@ const Animes = ()=> {
   const {search} = useContext(AnimeContext)
   
   
-  if(loading === true) return <Loading/>
+  if(loading === true) return <MainPageLoading main={false}/>
   const totalAnimes = data.Page.media.length
   console.log(totalAnimes);
   const lastIndex = currentPage * animeForPage
@@ -27,15 +28,13 @@ const Animes = ()=> {
   
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center w-[60%] m-auto">
       <h1 className="uppercase font-bold text-center text-[25px] mt-[25px]">Anime List</h1>
       {
-        search === ""? <div className="grid grid-cols-6 gap-[25px] mx-[250px]">
+        search === ""? <div className="w-full grid grid-cols-6 gap-2">
         {
         data? data.Page.media.map((animeInfo)=> {
-          return <div className="w-full m-4">
-             <SimpleCard info={animeInfo}/>
-          </div>
+          return <SimpleCard info={animeInfo}/>
         }).slice(firstIndex,lastIndex) : <Loading/>
         }
 

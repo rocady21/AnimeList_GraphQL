@@ -10,12 +10,12 @@ import { Carousel } from 'react-responsive-carousel';
 import { useRouter } from "next/navigation"
 import SimpleCard from "./components/Home/SImpleCard"
 import MainPageLoading from "./components/MainPageLoading"
+import Search from "./components/Search"
 
 export default function Home() {
 
   const router = useRouter()
-
-  const {mostrarMensaje,mensaje} = useContext(AnimeContext)
+  const {mostrarMensaje,mensaje,search} = useContext(AnimeContext)
   const QUERY_TENDENCIA = TRAER_ANIMES_TENDENCIA(false)
   const POPULAR_TOOD_EL_TIEMPO_QUERY = POPULAR_TOOD_EL_TIEMPO(false)
 
@@ -25,7 +25,7 @@ export default function Home() {
   const {data:dataPopularAll,loading:loadingPopularAll,error:errorPopularAll} = useQuery(POPULAR_TOOD_EL_TIEMPO_QUERY)
 
 
-  if(loading === true || loadingTendencia === true || loadingPopular === true || loadingPopularAll === true) return <MainPageLoading/>
+  if(loading === true || loadingTendencia === true || loadingPopular === true || loadingPopularAll === true) return <MainPageLoading main={true}/>
 
 
   const VerTendencias = ()=> {
@@ -37,7 +37,8 @@ export default function Home() {
 
   return (
     <div className="flex flex-col items-center w-[60%] m-auto">
-
+      {
+        search === ""?  <div className="flex flex-col w-full items-center">
       <div className="tendencia mt-[50px] w-full w-full">
         <div className=" flex flex-row justify-between items-start">
           <h1 className="font-bold text-gray-800 uppercase text-start">Tendecias</h1>
@@ -84,6 +85,7 @@ export default function Home() {
         <h1 className="font-bold text-gray-800 uppercase text-start ">Siguiente temporada</h1>
         <div className="data"></div>
       </div>
+      </div> : <Search/> }
 
 
     </div>

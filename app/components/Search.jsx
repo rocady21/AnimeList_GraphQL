@@ -13,7 +13,7 @@ const Search = ()=> {
         }
     })
     
-    if(loading === true) return <div className="loading w-full flex flex-row flex-wrap px-[150px]">
+    if(loading === true) return <div className="loading w-full flex flex-row flex-wrap">
         <div className="card w-[12%] h-[275px] m-3 flex flex-col justify-between">
             <div className="W-full bg-gray-300 animate-pulse h-[88%]"></div>
             <div className="w-full bg-gray-300 animate-pulse h-[8%]"></div>
@@ -132,7 +132,7 @@ const Search = ()=> {
     </div>
     console.log(data);
     return (
-        <div className="flex flex-row flex-wrap w-full px-[150px]">
+        <div className="flex flex-row flex-wrap w-full">
             {
                 data.Page.media.map((anime,index)=> {
                     return <div className="w-[12%] h-[350px] mx-3">
